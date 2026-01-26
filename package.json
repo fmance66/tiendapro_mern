@@ -5,8 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node backend/server",
-    "server": "nodemon backend/server",
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
     "client": "set NODE_OPTIONS=--openssl-legacy-provider && npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
