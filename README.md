@@ -88,6 +88,12 @@ john@example.com (Customer)
 
 jane@example.com (Customer)
 123456
+
+leimancevich@google.com
+123456
+
+rosmartinez@google.com
+123456
 ```
 
 ## License
