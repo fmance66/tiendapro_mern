@@ -1,0 +1,462 @@
+{
+	"info": {
+		"name": "TiendaPro MERN",
+		"description": "Colección de endpoints para el proyecto TiendaPro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/products",
+							"host": ["{{URL}}"],
+							"path": ["api", "products"]
+						}
+					}
+				},
+				{
+					"name": "Get Top Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/products/top",
+							"host": ["{{URL}}"],
+							"path": ["api", "products", "top"]
+						}
+					}
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/products/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "products", ":id"],
+							"variable": [
+								{ "key": "id", "value": "1", "description": "ID del producto" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Product (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/products",
+							"host": ["{{URL}}"],
+							"path": ["api", "products"]
+						}
+					}
+				},
+				{
+					"name": "Update Product (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Sample Name\",\n  \"price\": 0,\n  \"image\": \"/images/sample.jpg\",\n  \"brand\": \"Sample Brand\",\n  \"category\": \"Sample Category\",\n  \"countInStock\": 0,\n  \"numReviews\": 0,\n  \"description\": \"Sample description\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/products/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "products", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_PRODUCTO" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Product (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/products/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "products", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_PRODUCTO" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great product!\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/products/:id/reviews",
+							"host": ["{{URL}}"],
+							"path": ["api", "products", ":id", "reviews"],
+							"variable": [
+								{ "key": "id", "value": "ID_PRODUCTO" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Auth User (Login)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/login",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", "login"]
+						}
+					}
+				},
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.collectionVariables.set(\"TOKEN\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": ["{{URL}}"],
+							"path": ["api", "users"]
+						}
+					}
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/profile",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe Updated\",\n  \"email\": \"john@example.com\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/profile",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", "profile"]
+						}
+					}
+				},
+				{
+					"name": "Get All Users (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": ["{{URL}}"],
+							"path": ["api", "users"]
+						}
+					}
+				},
+				{
+					"name": "Delete User (Admin)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_USUARIO" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get User By ID (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/users/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_USUARIO" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Update User (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Name\",\n  \"email\": \"newemail@example.com\",\n  \"isAdmin\": true\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "users", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_USUARIO" }
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"orderItems\": [\n    {\n      \"name\": \"Product Name\",\n      \"qty\": 1,\n      \"image\": \"/images/sample.jpg\",\n      \"price\": 0,\n      \"product\": \"ID_PRODUCTO\"\n    }\n  ],\n  \"shippingAddress\": {\n    \"address\": \"123 St\",\n    \"city\": \"City\",\n    \"postalCode\": \"12345\",\n    \"country\": \"Country\"\n  },\n  \"paymentMethod\": \"PayPal\",\n  \"itemsPrice\": 0,\n  \"taxPrice\": 0,\n  \"shippingPrice\": 0,\n  \"totalPrice\": 0\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/orders",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders"]
+						}
+					}
+				},
+				{
+					"name": "Get Order By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/orders/:id",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders", ":id"],
+							"variable": [
+								{ "key": "id", "value": "ID_ORDEN" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Order to Paid",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" },
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"PAYMENT_ID\",\n  \"status\": \"COMPLETED\",\n  \"update_time\": \"2020-01-01\",\n  \"payer\": {\n    \"email_address\": \"payer@example.com\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/orders/:id/pay",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders", ":id", "pay"],
+							"variable": [
+								{ "key": "id", "value": "ID_ORDEN" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Order to Delivered (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/orders/:id/deliver",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders", ":id", "deliver"],
+							"variable": [
+								{ "key": "id", "value": "ID_ORDEN" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get My Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/orders/myorders",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders", "myorders"]
+						}
+					}
+				},
+				{
+					"name": "Get All Orders (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"url": {
+							"raw": "{{URL}}/api/orders",
+							"host": ["{{URL}}"],
+							"path": ["api", "orders"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Upload",
+			"item": [
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Authorization", "value": "Bearer {{TOKEN}}" }
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/api/upload",
+							"host": ["{{URL}}"],
+							"path": ["api", "upload"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Config",
+			"item": [
+				{
+					"name": "Get PayPal Client ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/config/paypal",
+							"host": ["{{URL}}"],
+							"path": ["api", "config", "paypal"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

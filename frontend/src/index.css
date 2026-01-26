@@ -1,0 +1,111 @@
+/* Asegura que el body ocupe toda la pantalla */
+body, #root {
+  height: 100vh;
+}
+
+/* Convierte el contenedor de la App en un Flexbox vertical */
+#root > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Hace que el contenido principal crezca y empuje al footer */
+main {
+  flex: 1;
+  min-height: 80vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
+h3 {
+  padding: 1rem 0;
+}
+
+/* Estilo personalizado para botones claros */
+.btn-light {
+  background-color: #f8f9fa;
+  /* Borde fino gris muy suave */
+  border: 1px solid #dee2e6; 
+  /* Sombra sutil para darle relieve */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+/* Efecto al pasar el mouse (hover) */
+.btn-light:hover {
+  background-color: #e2e6ea;
+  border-color: #dae0e5;
+  /* La sombra crece un poquito para simular que el botón se levanta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Ajuste para las imágenes en las tarjetas de productos */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: contain; /* Mantiene la proporción sin recortar */
+  padding: 1rem;
+}
+
+/* Efecto hover suave para las tarjetas */
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+/* carousel */
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: flex;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.carousel-caption h2 {
+  color: #fff;
+}
+
+.carousel img {
+  height: 300px;
+  padding: 30px;
+  margin: 40px;
+  border-radius: 50%;
+}
+
+.carousel a {
+  margin: 0 auto;
+}
+
+@media (max-width: 580px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  .carousel img {
+    height: 200px;      /* Imágenes más chicas en móvil */
+  }
+}
