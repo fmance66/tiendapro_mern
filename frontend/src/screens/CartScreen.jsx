@@ -29,7 +29,8 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
+    // navigate('/login?redirect=shipping')
+    navigate('/shipping')
   }
 
   return (
@@ -38,7 +39,7 @@ const CartScreen = () => {
         <h1>Carrito de compras</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Tu carrito está vacío 
+            Tu carrito está vacío &nbsp;&nbsp;
             <Link to='/' className='btn btn-light px-5 my-3 shadow-sm'>
               Volver
             </Link>
