@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
+import { clearCart } from '../actions/cartActions'
 import { createOrder } from '../actions/orderActions'
 import { formatCurrency } from '../utils/currencyUtils' // 1. Importamos la utilidad
 
@@ -35,8 +36,11 @@ const PlaceOrderScreen = () => {
   useEffect(() => {
     if (success) {
       navigate(`/order/${order._id}`) 
+      dispatch({ type: 'ORDER_CREATE_RESET' })
+      // vacía el carrito
+      dispatch(clearCart())
     }
-  }, [navigate, success, order])
+  }, [navigate, success, order, dispatch])
 
   const placeOrderHandler = () => {
     dispatch(

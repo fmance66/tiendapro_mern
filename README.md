@@ -89,10 +89,10 @@ john@example.com (Customer)
 jane@example.com (Customer)
 123456
 
-leimancevich@google.com
+leimancevich@gmail.com
 123456
 
-rosmartinez@google.com
+rosmartinez@gmail.com
 123456
 ```
 
