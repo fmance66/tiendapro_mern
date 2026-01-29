@@ -1,40 +1,40 @@
 # TiendaPro plataforma eCommerce
 
-> eCommerce platform built with the MERN stack & Redux.
+> Plataforma de comercio electrónico construida con el stack MERN y Redux.
 
-This is the course project for my MERN eCommerce course
+Para ver el proyecto ir a https://tiendapro-6azb.onrender.com
 
-## Features
+## Características
 
-- Full featured shopping cart
-- Product reviews and ratings
-- Top products carousel
-- Product pagination
-- Product search feature
-- User profile with orders
-- Admin product management
-- Admin user management
-- Admin Order details page
-- Mark orders as delivered option
-- Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
-- Database seeder (products & users)
+- Carrito de compras completo
+- Reseñas y calificaciones de productos
+- Carrusel de productos destacados
+- Paginación de productos
+- Búsqueda de productos
+- Perfil de usuario con historial de pedidos
+- Gestión de productos (Administrador)
+- Gestión de usuarios (Administrador)
+- Página de detalle de pedidos (Administrador)
+- Opción para marcar pedidos como entregados
+- Proceso de checkout (envío, método de pago, etc.)
+- Integración con PayPal / tarjeta de crédito
+- Loader de base de datos (seeder) de productos y usuarios
 
-## Usage
+##  Usage
 
 ### Env Variables
 
-Create a .env file in then root and add the following
+Creá un archivo .env en la raíz del proyecto y agregá lo siguiente:
 
 ```
 NODE_ENV = development
 PORT = 5000
-MONGO_URI = your mongodb uri
+MONGO_URI = tu uri de mongodb
 JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
+PAYPAL_CLIENT_ID = tu client id de paypal
 ```
 
-### Install Dependencies (frontend & backend)
+### Instalar Dependencias (frontend y backend)
 
 ```
 npm install
@@ -42,40 +42,42 @@ cd frontend
 npm install
 ```
 
-### Run
+### Ejecutar la aplicación
 
 ```
-# Run frontend (:3000) & backend (:5000)
+# Ejecutar frontend (:3000) y backend (:5000)
 npm run dev
 
-# Run backend only
+# Ejecutar solo el backend
 npm run server
 ```
 
 ## Build & Deploy
 
 ```
-# Create frontend prod build
+# Crear build de producción del frontend
 cd frontend
 npm run build
 ```
 
-There is a Heroku postbuild script, so if you push to Heroku, no need to build manually for deployment to Heroku
+### Cargar la Base de Datos (Seed)
 
-### Seed Database
-
-You can use the following commands to seed the database with some sample users and products as well as destroy all data
+Podés usar los siguientes comandos para cargar la base de datos con usuarios y productos de ejemplo, o eliminar todos los datos:
 
 ```
-# Import data
+# Importar datos
 npm run data:import
 
-# Destroy data
+# Reemplazar datos
+npm run data:replace
+```
+
+# Eliminar datos
 npm run data:destroy
 ```
 
 ```
-Sample User Logins
+Usuarios de ejemplo
 
 admin@example.com (Admin)
 123456
@@ -96,26 +98,8 @@ rosmartinez@gmail.com
 123456
 ```
 
-## License
+## Licencia
 
-The MIT License
+Licencia MIT
 
-Copyright (c) 2020 Traversy Media https://traversymedia.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+Copyright (c) 2026 Main IT https://mainit.com
