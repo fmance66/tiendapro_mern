@@ -13,7 +13,6 @@ const LoginScreen = () => {
 
   const dispatch = useDispatch()
   
-  // Hooks correctos para v6
   const { search } = useLocation()
   const navigate = useNavigate()
 

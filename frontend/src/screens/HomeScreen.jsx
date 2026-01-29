@@ -12,8 +12,6 @@ import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () => {
   
-  // const [unsplashId, setUnsplashId] = useState()
-
   // Extraemos los parámetros directamente de la URL usando el Hook
   const { keyword, pageNumber: pageNumberParam } = useParams()
 
@@ -32,10 +30,11 @@ const HomeScreen = () => {
     <>
       <Meta />
 
-      <h1 className='pb-0 mb-0'>Novedades</h1>
-
       {!keyword ? (
-        <ProductCarousel />
+        <>
+          <h1 className='pb-0 mb-0'>Novedades</h1>
+          <ProductCarousel />
+        </>
       ) : (
         <Link to='/' className='btn btn-light px-5 my-3 shadow-sm'>
           Volver

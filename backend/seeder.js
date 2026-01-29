@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import fs from 'fs'
 // import path from 'path'
 import colors from 'colors'                     // no eliminar se usa para los mensajes
-import users from './data/users.js'
+// import users from './data/users.js'
 // import products from './data/products.js'
 import User from './models/userModel.js'
 import Product from './models/productModel.js'
@@ -27,8 +27,11 @@ const importData = async () => {
       await User.deleteMany()
     }
 
-    // agrega los usuarios
-    const createdUsers = await User.insertMany(users)
+    // lee los usuarios del json
+    const usersData = JSON.parse(fs.readFileSync('./backend/data/users.json', 'utf-8'))
+    // agrega los usuarios a la base
+    const createdUsers = await User.insertMany(usersData)
+    // obtiene el admin como el primer usuario creado
     const adminUser = createdUsers[0]._id
 
     // lee los productos del json
@@ -63,8 +66,6 @@ const destroyData = async () => {
     process.exit(1)
   }
 }
-
-
 
 if (modo === '-d') {
   destroyData()

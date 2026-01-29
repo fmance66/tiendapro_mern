@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
-import { formatCurrency } from '../utils/currencyUtils' // 1. Importamos la utilidad de dólares
+import { formatCurrency } from '../utils/currencyUtils' 
 
 const CartScreen = () => {
   const { id } = useParams() 
@@ -56,7 +56,6 @@ const CartScreen = () => {
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
                   <Col md={2}>
-                    {/* 2. Precio unitario en dólares */}
                     {formatCurrency(item.price)}
                   </Col>
                   <Col md={2}>
@@ -99,7 +98,6 @@ const CartScreen = () => {
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 {cartItems.reduce((acc, item) => acc + item.qty, 0) > 1 ? ' productos' : ' producto'}
               </h2>
-              {/* 3. Subtotal total formateado */}
               <div className='h4 font-weight-bold'>
                 {formatCurrency(
                   cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)

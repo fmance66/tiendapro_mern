@@ -59,7 +59,6 @@ const OrderListScreen = () => {
                   {order.isPaid ? (
                     <>
                       <i className='fas fa-check' style={{ color: 'green' }}></i>{' '}
-                      {/* {order.paidAt.substring(0, 10)} */}
                       {formatDate(order.paidAt)}
                     </>
                   ) : (
