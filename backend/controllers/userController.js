@@ -165,14 +165,53 @@ const updateUser = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 })
+// @desc    Actualizar el carrito del usuario
+// @route   PUT /api/users/cart
+// @access  Private
+const updateUserCart = asyncHandler(async (req, res) => {
+  console.log('updateUserCart called')
+  console.log('Body received:', JSON.stringify(req.body, null, 2))
+  
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      { cartItems: req.body },
+      { new: true }
+    )
 
-export {
-  authUser,
-  registerUser,
-  getUserProfile,
-  updateUserProfile,
-  getUsers,
-  deleteUser,
-  getUserById,
-  updateUser,
+    if (!updatedUser) {
+      res.status(404)
+      throw new Error('Usuario no encontrado')
+    }
+
+    console.log('User updated successfully')
+
+    res.json({
+        message: 'Carrito sincronizado con éxito',
+        cartItems: updatedUser.cartItems 
+    })
+  } catch (error) {
+    console.error('Error updating user cart:', error.message)
+    console.error('Error stack:', error.stack)
+    throw error
+  }
+})
+
+// @desc    Obtener el carrito guardado del usuario
+// @route   GET /api/users/cart
+// @access  Private
+const getUserCart = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    res.json(user.cartItems)
+  } else {
+    res.status(404)
+    throw new Error('Usuario no encontrado')
+  }
+})
+
+export { 
+  authUser, registerUser, getUserProfile, updateUserProfile, getUsers,
+  deleteUser, getUserById, updateUser, updateUserCart, getUserCart 
 }

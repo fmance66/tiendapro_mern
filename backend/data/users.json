@@ -2,37 +2,43 @@
   {
     "name": "Admin User",
     "email": "admin@example.com",
-    "password": "$2b$10$BiqN9.1H9mK7C4vxBoVxT.VOccIqq38cnaBvXZizllhrmuogrJUy6",
+    "password": "123456",
     "isAdmin": true
   },
   {
     "name": "Fernando Mancevich",
     "email": "fmancevich@mainit.com.ar",
-    "password": "$2b$10$Wu8j5y8T7Q/gP2f4BGMOp.VL6PsbLhiOf./2Lg2eJDY.R2Rtfa4G2",
+    "password": "mega08ne",
     "isAdmin": true
   },
   {
     "name": "John Doe",
     "email": "john@example.com",
-    "password": "$2b$10$xV3CSEyXwfRziR4up3GjpuSxT/LnxBC80PaYeGPDBZQeKQbOQ/UVC",
+    "password": "123456",
     "isAdmin": false
   },
   {
     "name": "Jane Doe",
     "email": "jane@example.com",
-    "password": "$2b$10$VR6DNR.9wZAp5AMr1gsuce7xU5LJETYS.7Vsi6lYO6As//y6jcC5.",
+    "password": "123456",
     "isAdmin": false
   },
   {
     "name": "Leila Andrea Mancevich",
     "email": "leimancevich@gmail.com",
-    "password": "$2b$10$NYjaMzVaJBGPy7jlLqVrdO8k0yJ8/kH32C2HeXG6cVGPMTYxEPru6",
+    "password": "123456",
     "isAdmin": false
   },
   {
     "name": "Rosana Andrea Martínez",
     "email": "rosmartinez@gmail.com",
-    "password": "$2b$10$tbewgcTfWbM7nSQUeIqt/OCuJ6RP7ZR17kfynrq8jwRKtKz.8UdRe",
+    "password": "123456",
+    "isAdmin": false
+  },
+  {
+    "name": "Hernán Sixto Ojeda",
+    "email": "hernan.ojeda@gmail.com.py",
+    "password": "123456",
     "isAdmin": false
   }
 ]

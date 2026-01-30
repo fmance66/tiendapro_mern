@@ -26,9 +26,11 @@ import {
   USER_UPDATE_REQUEST,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
+import { CART_LOAD_ITEMS } from '../constants/cartConstants'
 
 export const login = (email, password) => async (dispatch) => {
   try {
+
     dispatch({
       type: USER_LOGIN_REQUEST,
     })
@@ -39,18 +41,27 @@ export const login = (email, password) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.post(
-      '/api/users/login',
-      { email, password },
-      config
-    )
+    const { data } = await axios.post('/api/users/login', { email, password }, config)
 
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
-    })
-
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data, })
     localStorage.setItem('userInfo', JSON.stringify(data))
+
+    try {
+      // trae el carrito de este usuario específico desde la DB
+      const cartConfig = { headers: { Authorization: `Bearer ${data.token}` } }
+
+      const { data: userCart } = await axios.get('/api/users/cart', cartConfig)
+
+      // actualiza redux con los items reales de este usuario
+      dispatch({ type: CART_LOAD_ITEMS, payload: userCart }) 
+
+      // guarda en localStorage para persistencia local de ESTA sesión
+      localStorage.setItem('cartItems', JSON.stringify(userCart))
+      
+    } catch (error) {
+      console.error("No se pudo cargar el carrito, pero el login sigue activo", error)      
+    }
+
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -64,10 +75,16 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')
+  localStorage.removeItem('cartItems') 
+  localStorage.removeItem('shippingAddress') 
+  // localStorage.removeItem('paymentMethod')   // Opcional
+
   dispatch({ type: USER_LOGOUT })
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: ORDER_LIST_MY_RESET })
   dispatch({ type: USER_LIST_RESET })
+  // opcional: si se quiere limpiar redux del carrito también
+  // dispatch({ type: CART_RESET })  
 }
 
 export const register = (name, email, password) => async (dispatch) => {
@@ -82,11 +99,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.post(
-      '/api/users',
-      { name, email, password },
-      config
-    )
+    const { data } = await axios.post('/api/users', { name, email, password }, config)
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -99,6 +112,9 @@ export const register = (name, email, password) => async (dispatch) => {
     })
 
     localStorage.setItem('userInfo', JSON.stringify(data))
+    // limpia el carrito para que el nuevo user empiece de cero
+    localStorage.removeItem('cartItems') 
+
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,

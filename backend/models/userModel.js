@@ -21,6 +21,17 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    // carrito de compras
+    cartItems: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+        name: { type: String },
+        image: { type: String },
+        price: { type: Number },
+        countInStock: { type: Number },
+        qty: { type: Number },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -31,9 +42,9 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
 }
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
   if (!this.isModified('password')) {
-    next()
+    return
   }
 
   const salt = await bcrypt.genSalt(10)

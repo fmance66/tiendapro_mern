@@ -27,11 +27,11 @@ Para ver el proyecto ir a https://tiendapro-6azb.onrender.com
 Creá un archivo .env en la raíz del proyecto y agregá lo siguiente:
 
 ```
-NODE_ENV = development
-PORT = 5000
-MONGO_URI = tu uri de mongodb
-JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = tu client id de paypal
+NODE_ENV=development
+PORT=5000
+MONGO_URI=tu uri de mongodb
+JWT_SECRET=abc123
+PAYPAL_CLIENT_ID=tu client id de paypal
 ```
 
 ### Instalar Dependencias (frontend y backend)

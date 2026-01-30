@@ -3,12 +3,14 @@ import dotenv from 'dotenv'
 import fs from 'fs'
 // import path from 'path'
 import colors from 'colors'                     // no eliminar se usa para los mensajes
-// import users from './data/users.js'
+import users from './data/users.js'
 // import products from './data/products.js'
 import User from './models/userModel.js'
 import Product from './models/productModel.js'
 import Order from './models/orderModel.js'
 import connectDB from './config/db.js'
+
+import bcrypt from 'bcryptjs'
 
 dotenv.config()
 
@@ -27,10 +29,14 @@ const importData = async () => {
       await User.deleteMany()
     }
 
-    // lee los usuarios del json
-    const usersData = JSON.parse(fs.readFileSync('./backend/data/users.json', 'utf-8'))
+    // // lee los usuarios del json
+    // const usersData = JSON.parse(fs.readFileSync('./backend/data/users.json', 'utf-8'))
+    // // mapea los usuarios para encriptar el password antes de guardar en la base
+    // const usersMapped = usersData.map((user) => {
+    //   return { ...user, password: bcrypt.hashSync(user.password, 10) }
+    // })
     // agrega los usuarios a la base
-    const createdUsers = await User.insertMany(usersData)
+    const createdUsers = await User.insertMany(users)
     // obtiene el admin como el primer usuario creado
     const adminUser = createdUsers[0]._id
 
